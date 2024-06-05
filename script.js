@@ -1,12 +1,22 @@
-function setColorYellow() {
-    document.getElementById("myButton").className = 'btn btn-warning';
-    document.getElementById("myButton").onclick = setColorGreen;
+let indexColor = 0;
+
+const colors = [
+    { className: 'btn btn-danger'},
+    { className: 'btn btn-warning'},
+    { className: 'btn btn-success'}
+];
+
+function changeColor() {
+    indexColor = (indexColor + 1) % colors.length;
+    const color = colors[indexColor];
+    const btn = document.getElementById("myButton");
+    btn.className = color.className;
+    button.textContent = "Change color";
+    btn.textContent = color.className.split(' ')[2]; 
 }
-function setColorGreen() {
-    document.getElementById("myButton").className = 'btn btn-success';
-    document.getElementById("myButton").onclick = setColorRed;
+
+function autoChangeColor() {
+    setInterval(changeColor, 10000);
 }
-function setColorRed() {
-    document.getElementById("myButton").className = 'btn btn-danger';
-    document.getElementById("myButton").onclick = setColorYellow;
-}
+
+window.onload = autoChangeColor;
